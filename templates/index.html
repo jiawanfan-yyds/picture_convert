@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图片转化器</title>
+    <style>
+        /* 添加自定义样式 */
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #336699;
+            text-align: center;
+        }
+        form {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #336699;
+        }
+        select {
+            display: block;
+            margin: 0 auto 20px auto;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ffffff;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+            width: 200px;
+            font-size: 16px;
+            color: #333333;
+        }
+        input[type="text"], input[type="file"] {
+            display: block;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #f2f2f2;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+            width: 100%;
+            font-size: 16px;
+            color: #333333;
+        }
+        input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            background-color: #336699;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            width: 150px;
+        }
+        input[type="submit"]:hover {
+            background-color: #005580;
+        }
+    </style>
+</head>
+<body>
+    <h1>图片转化器</h1>
+    <form method="POST" enctype="multipart/form-data" action="/convert" id="image-form">
+        <label for="input_files">选择输入图片:</label>
+        <input type="file" name="input_files" id="input_files" multiple>
+        <label for="output_format">选择输出图片格式:</label>
+        <select name="output_format" id="output_format" style="background-color: #e6e6e6;">
+            <option value="jpg">JPEG</option>
+            <option value="png">PNG</option>
+            <option value="gif">GIF</option>
+        </select>
+        <label for="output_folder">输出文件路径:</label>
+        <input type="text" name="output_folder" id="output_folder" style="background-color: #e6e6e6;">
+        <input type="submit" value="Convert">
+        <input type="hidden" name="timestamp" value="{{ timestamp }}">
+    </form>
+</body>
+
+</html>
+    <script>
+        // 添加JavaScript代码
+        const form = document.getElementById('image-form');
+        form.addEventListener('dragover', (event) => {
+            event.preventDefault();
+        });
+        form.addEventListener('drop', (event) => {
+            event.preventDefault();
+            const files = event.dataTransfer.files;
+            const input = document.getElementById('input_files');
+            input.files = files;
+        });
+    </script>
+</html>

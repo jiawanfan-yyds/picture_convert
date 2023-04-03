@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>处理完成</title>
+    <style>
+        body {
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 24px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        li {
+            margin: 10px;
+        }
+
+        a {
+            color: #0077cc;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        } 
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
+</head>
+<body>
+    <h1>处理完成</h1>
+    <p>保存文件:</p>
+    <ul>
+    {% for file in output_files %}
+        <li>
+            <a href="{{ url_for('index', filename=file) }}" data-lightbox="image-{{ loop.index }}" data-title="{{ file }}">
+                <img src="{{ url_for('index', filename=file) }}" alt="{{ file }}">
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+    <script>
+       $(document).ready(function(){
+            // 在文档加载完毕后初始化 Lightbox 库
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true
+            });
+        });
+    </script>
+</body>
+</html>
+
+
